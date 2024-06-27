@@ -17,7 +17,12 @@ class add_emp {
                 enviroment = '.staffwizard.com'
                 vars.pass = 's74ffw1z4rd@1234'
             } else {
-                alert('ERROR')
+                if(enviroment == 'dev'){
+                    enviroment = '.staffwizarddev.com'
+                    vars.pass = 's74ffw1z4rd@1234'
+                } else {
+                    alert('Error!')
+                }
             }
         }
         cy.visit('https://' + instance + enviroment)
