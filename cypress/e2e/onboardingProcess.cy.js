@@ -2,9 +2,11 @@
 
 import vars from '../../variables';
 
-import apply from '../support/pageObjects/onboardingProcess/applyLiveATZS';
+import apply from '../support/pageObjects/onboardingProcess/applyStagingATZS';
+//import apply from '../support/pageObjects/onboardingProcess/applyLiveATZS';
 //import apply from '../support/pageObjects/onboardingProcess/applyDEMO';
-import onboarding from '../support/pageObjects/onboardingProcess/onbLiveATZS';
+import onboarding from '../support/pageObjects/onboardingProcess/onbStagingATZS';
+//import onboarding from '../support/pageObjects/onboardingProcess/onbLiveATZS';
 
 describe('Onboarding Process Automation', function() {
 
@@ -34,21 +36,19 @@ describe('Onboarding Process Automation', function() {
             }
         }
 
-    it('New Applicant forms', function() {
+    it.only('New Applicant forms', function() {
         app.applicant()
         cy.wait(time)
         app.pInf()
         cy.wait(time)
         app.eInf()
         cy.wait(time)
-        app.sInf()
-        cy.wait(time)
         app.applyDone()
         cy.wait(time)
         cy.pause()
     })
 
-    it.only('Onboarding Forms', function() {
+    it('Onboarding Forms', function() {
         onb.login()
         cy.wait(time)
         onb.wel_vid()

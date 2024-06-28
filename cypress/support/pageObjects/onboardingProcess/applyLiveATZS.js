@@ -13,7 +13,7 @@ class apply {
         cy.log(vars.enviroment)
         cy.visit('https://' + vars.instance + vars.enviroment + '/jobs')
         cy.get('.latest-job-box')
-        .eq(0)
+        .eq(1)
         .should('include.text', vars.jobTitle)
         .find('.btn-primary')
         .click()
@@ -60,6 +60,7 @@ class apply {
             .click()
         cy.switch_click('.switch', '5', 'right')
         cy.upload('[type="file"]', 'staffwizard_com.pdf')
+        cy.checkbox_eq('.dyn_check', '8' )
         cy.wait(time)
         cy.btn_click_eq('.btn-submit', '1')
     }
