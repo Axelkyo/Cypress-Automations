@@ -16,7 +16,7 @@ const vars = {
     payType: 'Hourly Pay',
     status: 'Active',
     // Employee and Onboarding Variables 
-    fName: 'Flagget',
+    fName: 'Flagged',
     mName: 'Middle',
     lName: 'Applicant',
     nName: 'Nickname',
@@ -28,7 +28,7 @@ const vars = {
     hire: '01-01-2022',
     join: '01-03-2022',
     payID: '02594',
-    jobTitle: 'TEST FOR SALARY',
+    jobTitle: 'SMS Credentials',
     marital: 'Married',
     prevComp: 'CNC Designer',
     business: 'Metal-Steel Manufacter',

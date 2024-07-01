@@ -2,11 +2,11 @@
 
 import vars from '../../variables';
 
-import apply from '../support/pageObjects/onboardingProcess/applyStagingATZS';
-//import apply from '../support/pageObjects/onboardingProcess/applyLiveATZS';
-//import apply from '../support/pageObjects/onboardingProcess/applyDEMO';
-import onboarding from '../support/pageObjects/onboardingProcess/onbStagingATZS';
-//import onboarding from '../support/pageObjects/onboardingProcess/onbLiveATZS';
+// import apply from '../support/pageObjects/onboardingProcess/applyStagingATZS';
+import apply from '../support/pageObjects/onboardingProcess/applyLiveATZS';
+// import apply from '../support/pageObjects/onboardingProcess/applyDEMO';
+// import onboarding from '../support/pageObjects/onboardingProcess/onbStagingATZS';
+import onboarding from '../support/pageObjects/onboardingProcess/onbLiveATZS';
 
 describe('Onboarding Process Automation', function() {
 
@@ -42,6 +42,8 @@ describe('Onboarding Process Automation', function() {
         app.pInf()
         cy.wait(time)
         app.eInf()
+        cy.wait(time)
+        app.sInf()
         cy.wait(time)
         app.applyDone()
         cy.wait(time)
