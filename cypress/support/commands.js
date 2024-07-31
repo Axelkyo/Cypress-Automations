@@ -128,6 +128,14 @@ Cypress.Commands.add('checkbox_eq', function(selector, position) {
         .click('left')
 })
 
+Cypress.Commands.add('dyn_check', function(selector, eq) {
+    cy.get(selector)
+        .find('.dyn_check')
+        .eq(eq)
+        .click('left')
+
+})
+
 Cypress.Commands.add('click_ctrl', function(selector) {
     cy.get(selector)
         .click({

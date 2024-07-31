@@ -9,8 +9,9 @@ let time = 300
 
 class onbaording {
     login() {
-        vars.pass = '1313' // prompt('Onboarding Password: ')// 9kPFsehp
+        vars.pass = 'mrpDk1WS' // prompt('Onboarding Password: ')// 9kPFsehp
         cy.visit('https://' + vars.instance + vars.enviroment + '/onboarding')
+        cy.pause()
         cy.text_field('.email', vars.email)
         cy.text_field('.required[name="password"]', vars.pass)
         cy.btn_click('.btn')
@@ -24,7 +25,8 @@ class onbaording {
     per_info() {
         cy.text_field('#phone', '6188282069')
         cy.text_field('#birth_date', '01011989')
-        cy.tab()
+        // cy.tab()
+        cy.pause()
         cy.btn_click('.paperwork-btn-submit')
     }
 

@@ -12,6 +12,7 @@ class apply {
         cy.log(vars.instance)
         cy.log(vars.enviroment)
         cy.visit('https://' + vars.instance + vars.enviroment + '/jobs')
+        cy.pause()
         cy.get('.latest-job-box')
         .eq(0)
         .should('include.text', vars.jobTitle)
@@ -34,7 +35,9 @@ class apply {
         cy.select_field('#maritalStatus', vars.marital)
         cy.text_field('#ssn', vars.ssn)
         // cy.text_field('#datepicker', vars.dob)
-        cy.tab()
+        // cy.tab()
+        cy.checkbox_eq('.dyn_check', '1')
+        cy.pause()
         cy.wait(time)
         cy.btn_click_eq('.btn-submit', '0')
     }
@@ -51,8 +54,8 @@ class apply {
         cy.switch_click('.switch', '1', 'left')
         cy.switch_click('.switch', '2', 'left')
         cy.switch_click('.switch', '3', 'left')
-        cy.checkbox_eq('.dyn_check', '2')
-        cy.checkbox_eq('.dyn_check', '4')
+        cy.checkbox_eq('.dyn_check', '5')
+        cy.checkbox_eq('.dyn_check', '6')
         cy.select_field('#referrer', vars.refer)
         // cy.switch_click('.switch', '4', 'left')
         cy.get('.switch')
@@ -61,13 +64,24 @@ class apply {
         cy.switch_click('.switch', '5', 'right')
         cy.upload('[type="file"]', 'staffwizard_com.pdf')
         cy.checkbox_eq('.dyn_check', '7')
-        cy.pause()
-        cy.wait(time)
+        // cy.wait(time)
         cy.btn_click_eq('.btn-submit', '1')
     }
 
     sInf() {
         cy.btn_click_eq('.btn-submit', '2')
+        cy.get('.btn-submit')
+            .each(function(id, $btn) {
+                let btn = id
+                let btnTxt = $btn
+                cy.log(btn, btnTxt)
+                if(btnTxt == 'Submit Application'){
+                    cy.get('.btn_submit')
+                        .eq(btn)
+                        .pause()
+                        .click()
+                }
+            })
     }
 
     applyDone() {

@@ -9,11 +9,11 @@ let time = 300
 
 class onbaording {
     login() {
-        let onbPass = '3TPIhwRb'
+        let onbPass = 'INyzbYJU'
         cy.visit('https://' + vars.instance + vars.enviroment + '/onboarding')
+        cy.pause()
         cy.text_field('.email', vars.email)
         cy.text_field('.required[name="password"]', onbPass)
-        cy.pause()
         cy.btn_click('.btn')
     }
 
@@ -40,6 +40,7 @@ class onbaording {
                     .should('contains', 'current_page')
                     .then( function() {
                         cy.text_field('#phone', '6188282069')
+                        cy.text_field('#ssn', vars.ssn)
                         cy.text_field('#birth_date', '01011989')
                         cy.tab()
                         cy.btn_click('.paperwork-btn-submit')
@@ -56,7 +57,7 @@ class onbaording {
             .then( function() {
                 cy.get('.staff-step')
                     .find('li')
-                    .eq(1)  
+                    .eq(1)
                     .invoke('attr', 'class')
                     .should('contains', 'current_page')
                     .then( function() {
@@ -107,7 +108,7 @@ class onbaording {
             .then( function() {
                 cy.get('.staff-step')
                     .find('li')
-                    .eq(3)
+                    .eq(1)
                     .invoke('attr', 'class')
                     .should('contains', 'current_page')
                     .then( function() {
@@ -159,8 +160,8 @@ class onbaording {
                         cy.text_field('#datepicker', '06/01/2024')
                         cy.tab()
                         cy.select_field('#exampleFormControlSelect1', 'Full-Time')
-                        // cy.get('label[for="understand"]')
-                        //     .click('left')
+                        cy.get('label[for="understand"]')
+                            .click('left')
                         cy.btn_click('.paperwork-btn-submit')
                     })
                 
@@ -225,7 +226,7 @@ class onbaording {
             .then( function() {
                 cy.get('.staff-step')
                     .find('li')
-                    .eq(3)
+                    .eq(0)
                     .invoke('attr', 'class')
                     .should('contains', 'current_page')
                     .then( function() {
@@ -249,7 +250,7 @@ class onbaording {
             .contains('Minimum Requirements')
             .should('be.visible')
             .then( function() {
-                // cy.checkbox_eq('.custom-checkbox', '0')
+                cy.checkbox_eq('.custom-checkbox', '0')
                 cy.btn_click('.paperwork-btn-submit-next')
             })
     }
@@ -289,7 +290,6 @@ class onbaording {
                         cy.select_field('#ethnicity', 'Hispanic or Latino')
                         cy.upload_eq('[type="file"]', 'Social Security Card.png', '0')
                         cy.upload_eq('[type="file"]', 'DL_SpogeBob.png', '1')
-                        cy.upload_eq('[type="file"]', 'guardLic.png', '2')
                         cy.btn_click('.paperwork-btn-submit')
                     })
                 })
@@ -348,12 +348,13 @@ class onbaording {
             .contains('PayCard Detail')
             .should('be.visible')
             .then( function() {
-                cy.switch_click('.switch', '0', 'left')
-                cy.text_field('#paycardNumber', vars.cardNum)
-                cy.text_field('#confirmPaycardNumber', vars.cardNum)
-                cy.text_field('#card_expiry_date', '01/01/2030')
-                cy.tab()
-                cy.switch_click('.switch', '1', 'left')
+                // cy.switch_click('.switch', '0', 'left')
+                // cy.text_field('#paycardNumber', vars.cardNum)
+                // cy.text_field('#confirmPaycardNumber', vars.cardNum)
+                // cy.text_field('#card_expiry_date', '01/01/2030')
+                // cy.tab()
+                // cy.switch_click('.switch', '1', 'left')
+                cy.pause()
                 cy.btn_click('.paperwork-btn-submit')
             })
     }
@@ -397,6 +398,15 @@ class onbaording {
                 cy.get('.final_step_submission')
                     .click()
             })
+        cy.get('.modal-body')
+            .find('img[alt="correction"]')
+            .should('be.visible')
+            .then( function() {
+                cy.btn_click('.all_steps_done')
+            })
+    }
+
+    onbDone() {
         cy.get('.modal-body')
             .find('img[alt="correction"]')
             .should('be.visible')

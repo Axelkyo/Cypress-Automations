@@ -4,33 +4,34 @@ require('cypress-xpath');
 require('cypress-plugin-tab')
 
 import vars from '../../../../variables';
-let instance = prompt('What instance it is?')
-let enviroment = prompt('What enviroment is?')
+// let instance = prompt('What instance it is?')
+// let enviroment = prompt('What enviroment is?')
 
 class add_emp {
     login() {
-        if(enviroment == 'staging'){
-            enviroment = '.staffwizardstaging.com'
-            vars.pass = '5678@s74ffw1z4rd'
-        } else {
-            if(enviroment == 'live'){
-                enviroment = '.staffwizard.com'
-                vars.pass = 's74ffw1z4rd@1234'
-            } else {
-                if(enviroment == 'dev'){
-                    enviroment = '.staffwizarddev.com'
-                    vars.pass = 's74ffw1z4rd@1234'
-                } else {
-                    alert('Error!')
-                }
-            }
-        }
-        cy.visit('https://' + instance + enviroment)
-        cy.text_field('#name', 'superadmin')
+        // if(enviroment == 'staging'){
+        //     enviroment = '.staffwizardstaging.com'
+        //     vars.pass = '5678@s74ffw1z4rd'
+        // } else {
+        //     if(enviroment == 'live'){
+        //         enviroment = '.staffwizard.com'
+        //         vars.pass = 's74ffw1z4rd@1234'
+        //     } else {
+        //         if(enviroment == 'dev'){
+        //             enviroment = '.staffwizarddev.com'
+        //             vars.pass = 's74ffw1z4rd@1234'
+        //         } else {
+        //             alert('Error!')
+        //         }
+        //     }
+        // }
+        cy.visit('https://' + vars.instance + vars.enviroment)
+        cy.text_field('#name', vars.user)
         cy.text_field('#password', vars.pass)
+        cy.pause()
         cy.get('#submit')
             .click()
-        cy.visit('https://' + instance + enviroment + '/admin/employee/add/guard')
+        cy.visit('https://' + vars.instance + vars.enviroment + '/admin/employee/add/guard')
     }
 
     emp_forms() {
@@ -60,7 +61,7 @@ class add_emp {
         cy.select_field('select[name="ethnicity"]', 'Hispanic or Latino')
         cy.text_field('input[name = "social_security"]', vars.ssn)
         cy.select_field('select[name="select_id_type"]', 'Drivers License')
-        cy.select_field('select[name="license_state"]', 'TX')
+        cy.select_field('select[name="license_state"]', vars.shState)
         cy.wait(500)
         cy.text_field('#driver_license', vars.cardNum)
         cy.select_field('#master_region_id', vars.region)

@@ -4,28 +4,29 @@ require('cypress-xpath');
 require('cypress-plugin-tab')
 
 import vars from '../../../../variables';
-let instance = prompt('What instance it is?')
-let enviroment = prompt('What enviroment is?')
+// let instance = prompt('What instance it is?')
+// let enviroment = prompt('What enviroment is?')
 
 class add_client {
     login() {
-        if(enviroment == 'staging'){
-            enviroment = '.staffwizardstaging.com'
-            vars.pass = '5678@s74ffw1z4rd'
-        } else {
-            if(enviroment == 'live'){
-                enviroment = '.staffwizard.com'
-                vars.pass = 's74ffw1z4rd@1234'
-            } else {
-                alert('ERROR')
-            }
-        }
-        cy.visit('https://' + instance + enviroment)
+        // if(enviroment == 'staging'){
+        //     enviroment = '.staffwizardstaging.com'
+        //     vars.pass = '5678@s74ffw1z4rd'
+        // } else {
+        //     if(enviroment == 'live'){
+        //         enviroment = '.staffwizard.com'
+        //         vars.pass = 's74ffw1z4rd@1234'
+        //     } else {
+        //         alert('ERROR')
+        //     }
+        // }
+        cy.visit('https://' + vars.instance + vars.enviroment)
         cy.text_field('#name', 'superadmin')
         cy.text_field('#password', vars.pass)
+        cy.pause()
         cy.get('#submit')
             .click()
-        cy.visit('https://' + instance + enviroment + '/admin/accounts/add')
+        cy.visit('https://' + vars.instance + vars.enviroment + '/admin/accounts/add')
     }
 
     client_forms() {
@@ -38,6 +39,7 @@ class add_client {
     if(vars.country == 'Jamaica'){
         cy.select_field('#cbostateja', vars.state)
     } else {
+        cy.text_field('#apt_numbers', 'P.O. Box 100870')
         cy.select_field('#cbostate', vars.state)
         cy.text_field('#zip', vars.zip)
         cy.text_field('#city', vars.city)
